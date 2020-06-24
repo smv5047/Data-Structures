@@ -1,7 +1,7 @@
 """
-Binary search trees are a data structure that enforce an ordering over 
-the data they store. That ordering in turn makes it a lot more efficient 
-at searching for a particular piece of data in the tree. 
+Binary search trees are a data structure that enforce an ordering over
+the data they store. That ordering in turn makes it a lot more efficient
+at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
@@ -19,52 +19,41 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
-    # root = BSTNode(8)
-    # have tree with root 8, if insert node with value 3 insert left
-
-    # if new value < self.value:
-        # if self.left is already taken by a node
-        # make that (left) node call insert
-        # set the left to the new node with the new value
-
-    # if new value >= self.value:
-        # if self.right is already taken by a node
-        # make that (right) node call insert
-        # set the right to the the new node with th enew value
-
-    # Return True if the tree contains the value
-    # False if it does not
+        if value < self.value:
+            # if no self.left exist, make self.left = value
+            if self.left is not None:
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
+        if value >= self.value:
+            if self.right is not None:
+                self.right.insert(value)
+            else:
+                self.right = BSTNode(value)
 
     def contains(self, target):
-
         if self.value == target:
             return True
-
-        found = False
-        if self.value < target:
+        if self.value > target:
             if self.left is None:
                 return False
             found = self.left.contains(target)
-        # compare the target to current value
-        # if current value of node <= target
-            # check the left subtree
-            # if you cannot go left, return False
-        # if current value of node > target
-        if self.value > target:
-            # check right subtree contains target
-            # if you cannot go right, returtn False
+        else:
             if self.right is None:
                 return False
             found = self.right.contains(target)
-
         return found
 
     # Return the maximum value found in the tree
+
     def get_max(self):
-        pass
+        # why do we have to return the function as part of the recursion
+        if self.right is None:
+            return self.value
+        return self.right.get_max()
 
     # Call the function `fn` on the value of each node
+
     def for_each(self, fn):
         pass
 
@@ -95,3 +84,8 @@ class BSTNode:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+root = BSTNode(5)
+root.insert(30)
+print(root.get_max())

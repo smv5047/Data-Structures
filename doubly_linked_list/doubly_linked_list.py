@@ -157,9 +157,16 @@ class DoublyLinkedList:
                 return
             else:
                 moving_node = node.value
-                self.delete(node)
-                # node.delete()
+                # self.delete(node)
+                node.delete()
                 self.add_to_head(moving_node)
+                self.length -= 1
+
+        #  def delete(self):
+        #    if self.prev:
+        #     self.prev.next = self.next
+            # if self.next:
+        #     self.next.prev = self.prev
 
     """Removes the input node from its current spot in the
     List and inserts it as the new tail node of the List."""
