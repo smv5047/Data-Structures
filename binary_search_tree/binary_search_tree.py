@@ -47,7 +47,7 @@ class BSTNode:
     # Return the maximum value found in the tree
 
     def get_max(self):
-        # why do we have to return the function as part of the recursion
+        # todo why do we have to return the function as part of the recursion
         if self.right is None:
             return self.value
         return self.right.get_max()
